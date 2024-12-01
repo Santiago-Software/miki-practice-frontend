@@ -1,6 +1,19 @@
-div{
+div {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+p {
+    margin: 0; // Remove default margin
+    font-size: 1rem; // Font size for the text
+}
+
+.footer-logo {
+    width: 50px; // Set the logo width
+    height: auto; // Maintain aspect ratio
+    margin-left: 5px; // Add space between text and logo
+    vertical-align: middle; // Align logo vertically with the text
 }
