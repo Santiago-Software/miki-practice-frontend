@@ -12,7 +12,6 @@ export const appConfig = {
   provideHttpClient(),// Create an object from HttpClint in the route
   provideRouter(routes), provideAnimations()],
 
-  productsUrl: "http://localhost:5278/api/hello/"
 
-  //productsUrl: "http://localhost:3030/api/products/"
+  productsUrl: "http://localhost/api/products/"
 };

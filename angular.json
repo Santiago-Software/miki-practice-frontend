@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "miki-practice-frontend": {
+        "miki-demo-frontend": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -39,7 +39,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/miki-practice-frontend",
+                        "outputPath": "dist/miki-demo-frontend",
                         "index": "src/index.html",
                         "browser": "src/main.ts",
                         "polyfills": [
@@ -89,10 +89,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "miki-practice-frontend:build:production"
+                            "buildTarget": "miki-demo-frontend:build:production"
                         },
                         "development": {
-                            "buildTarget": "miki-practice-frontend:build:development"
+                            "buildTarget": "miki-demo-frontend:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
