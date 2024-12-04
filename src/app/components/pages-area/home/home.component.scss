@@ -56,15 +56,15 @@
 
 
 ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
-    border: 2px solid #e38e49;//none;
+    border: 2px solid #e38e49;
     padding: 0.5rem 0.75rem;
-    background-color: #fff5e3;//#f0f0f0;
-    color: black;//#007bff;
+    background-color: #fff5e3;
+    color: black;
     cursor: pointer;
 }
 
 ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-    background-color: #ea9d5c;//#007bff;
+    background-color: #ea9d5c;
     color: black;
 }
 
