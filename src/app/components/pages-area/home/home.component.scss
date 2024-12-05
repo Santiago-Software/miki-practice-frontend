@@ -44,6 +44,25 @@
     cursor: pointer; // Change cursor to pointer
 }
 
+
+// Status column
+.status-in-stock {
+    color: green;
+}
+
+.status-low-stock {
+    color: orange;
+}
+
+.status-out-of-stock {
+    color: red;
+}
+.default-message {
+    color: gray;
+    font-style: italic;
+    margin-top: 5px;
+}
+
 // Paginator
 ::ng-deep .p-paginator {
     margin-top: 1rem;
@@ -51,7 +70,7 @@
     background-color: transparent; // Remove background
     box-shadow: none; // Remove any shadow if present
     border: none; // Remove borders if needed
-  
+
 }
 
 
@@ -73,8 +92,8 @@
 ::ng-deep .p-paginator .p-paginator-next,
 ::ng-deep .p-paginator .p-paginator-first,
 ::ng-deep .p-paginator .p-paginator-last {
-  color: black; // Arrow color
-  transition: background-color 0.3s ease, color 0.3s ease; // Smooth transition
+    color: black; // Arrow color
+    transition: background-color 0.3s ease, color 0.3s ease; // Smooth transition
 }
 
 // Hover Effect for All Arrows
@@ -82,16 +101,17 @@
 ::ng-deep .p-paginator .p-paginator-next:hover,
 ::ng-deep .p-paginator .p-paginator-first:hover,
 ::ng-deep .p-paginator .p-paginator-last:hover {
-  background-color: #ea9d5c; // Highlighted background on hover
-  color: white; // Change arrow color on hover
+    background-color: #ea9d5c; // Highlighted background on hover
+    color: white; // Change arrow color on hover
 }
+
 // Disabled State for All Arrows
 ::ng-deep .p-paginator .p-paginator-prev.p-disabled,
 ::ng-deep .p-paginator .p-paginator-next.p-disabled,
 ::ng-deep .p-paginator .p-paginator-first.p-disabled,
 ::ng-deep .p-paginator .p-paginator-last.p-disabled {
-  color: #999; // Disabled arrow color
-  cursor: not-allowed; // Indicate unclickable state
+    color: #999; // Disabled arrow color
+    cursor: not-allowed; // Indicate unclickable state
 }
 
 // Product card backdrop
