@@ -44,24 +44,59 @@
     cursor: pointer; // Change cursor to pointer
 }
 
-
+  
 // Status column
-.status-in-stock {
-    color: green;
+
+/* General label style */
+.label-like {
+    display: inline-block; /* Ensure it only takes up as much space as necessary */
+    padding: 6px 12px;     /* Add padding for label-like appearance */
+    border-radius: 16px;   /* Rounded corners */
+    font-size: 14px;       /* Adjust the font size */
+    font-weight: 600;      /* Make text bold */
+    text-align: center;    /* Center the text */
+    white-space: nowrap;   /* Prevent text wrapping */
+    max-width: 100%;       /* Ensure it doesn't stretch beyond available space */
+    word-wrap: break-word; /* Allow wrapping if the text is too long */
 }
 
-.status-low-stock {
-    color: orange;
+/* For different status types */
+.not-selected {
+    background-color: #d3d3d3;  /* Light gray background */
+    color: #6c757d;             /* Dark gray text */
+    border: 1px solid #ccc;     /* Light gray border */
 }
 
-.status-out-of-stock {
-    color: red;
+.success {
+    background-color: #28a745;  /* Green background */
+    color: white;               /* White text */
+    border: 1px solid #28a745;  /* Green border */
 }
-.default-message {
-    color: gray;
-    font-style: italic;
-    margin-top: 5px;
+
+.warning {
+    background-color: #ffc107;  /* Yellow background */
+    color: white;               /* White text */
+    border: 1px solid #ffc107;  /* Yellow border */
 }
+
+.danger {
+    background-color: #dc3545;  /* Red background */
+    color: white;               /* White text */
+    border: 1px solid #dc3545;  /* Red border */
+}
+
+.neutral {
+    background-color: #007bff;  /* Blue background */
+    color: white;               /* White text */
+    border: 1px solid #007bff;  /* Blue border */
+}
+
+
+
+
+  
+
+
 
 // Paginator
 ::ng-deep .p-paginator {

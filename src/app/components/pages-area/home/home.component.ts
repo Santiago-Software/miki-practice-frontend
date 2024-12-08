@@ -7,6 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TagModule } from 'primeng/tag';
 
 
 
@@ -14,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [TableModule, CommonModule, DropdownModule, FormsModule],
+    imports: [TableModule, CommonModule, DropdownModule, FormsModule, TagModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })
@@ -27,6 +28,7 @@ export class HomeComponent {
         { label: 'Low Stock', value: 'low-stock' },
         { label: 'Out of Stock', value: 'out-of-stock' }
     ];
+    
     
 
 
@@ -55,17 +57,22 @@ export class HomeComponent {
 
 
 
-    getStatusClass(status: string): string {
+    getSeverity(status: string | null): string {
+        if (status === null) {
+            return 'not-selected'; // This will be used for the "not selected" label
+        }
         switch (status) {
             case 'in-stock':
-                return 'status-in-stock';
+                return 'success';
             case 'low-stock':
-                return 'status-low-stock';
+                return 'warning';
             case 'out-of-stock':
-                return 'status-out-of-stock';
+                return 'danger';
             default:
-                return '';
+                return 'neutral';
         }
     }
+    
+    
 
 }
