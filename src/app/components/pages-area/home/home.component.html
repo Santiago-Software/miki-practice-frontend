@@ -3,15 +3,16 @@
         [rowsPerPageOptions]="[5, 10, 20, 30]">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:20%">Id</th>
+                <th style="width:15%">Id</th>
                 <th style="width:20%">Name</th>
                 <th style="width:20%">Price</th>
                 <th style="width:20%">Stock</th>
                 <th style="width:20%">Status</th>
+                <th style="width: 5%;">Edit</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
-            <tr (click)="onRowClick($event, product)">
+            <tr class="editable-row" (click)="onRowClick($event, product)">
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
@@ -21,25 +22,85 @@
                         {{product.status || 'Not Selected'}}
                     </p>
                 </td>
+                <td class="text-center">
+                    
+                    <p-button 
+                        icon="pi pi-pencil" 
+                        *ngIf="!isEditing"
+                        class="mr-2 edit-btn" 
+                        [rounded]="true" 
+                        [outlined]="true" 
+                        severity="success" 
+                        (onClick)="editProduct(product)" />
+                    <!-- Pen Icon Button
+                    <button (click)="onRowClick($event, product)" class="edit-row-button">
+                        ✏️
+                    </button> -->
+                </td>
 
             </tr>
         </ng-template>
     </p-table>
 </div>
 
+
+
 <!-- Product card for row details -->
 <div class="modal" *ngIf="selectedProduct" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
+        <!-- Edit Button -->
+        <p-button 
+        icon="pi pi-pencil"
+        *ngIf="!isEditing" 
+        class="edit-bnt" 
+        [rounded]="true" 
+        [outlined]="true" 
+        severity="success" 
+        (onClick)="toggleEditMode()" />
+        <!-- <button class="edit-button" *ngIf="!isEditing" (click)="toggleEditMode()">✏️</button> -->
+
         <h2>Product Details</h2>
-        <p><strong>Id:</strong> {{ selectedProduct.id }}</p>
-        <p><strong>Name:</strong> {{ selectedProduct.name }}</p>
-        <p><strong>Price:</strong> {{ selectedProduct.price }}</p>
-        <p><strong>Stock:</strong> {{ selectedProduct.stock }}</p>
-        <p><strong>Status: </strong> 
-            <span [ngClass]="['label-like', getSeverity(selectedProduct.status)]">
+
+        <!-- Product Fields -->
+        <div class="product-field">
+            <strong>Id:</strong>
+            <span>{{ selectedProduct.id }}</span>
+        </div>
+
+        <div class="product-field">
+            <strong>Name:</strong>
+            <input *ngIf="isEditing" [(ngModel)]="selectedProduct.name" class="input-field" />
+            <span *ngIf="!isEditing">{{ selectedProduct.name }}</span>
+        </div>
+
+        <div class="product-field">
+            <strong>Price:</strong>
+            <input *ngIf="isEditing" [(ngModel)]="selectedProduct.price" class="input-field" />
+            <span *ngIf="!isEditing">{{ selectedProduct.price }}</span>
+        </div>
+
+        <div class="product-field">
+            <strong>Stock:</strong>
+            <input *ngIf="isEditing" [(ngModel)]="selectedProduct.stock" class="input-field" />
+            <span *ngIf="!isEditing">{{ selectedProduct.stock }}</span>
+        </div>
+
+        <div class="product-field">
+            <strong>Status:</strong>
+            <select *ngIf="isEditing" [(ngModel)]="selectedProduct.status" class="select-field">
+                <option value="in-stock">In Stock</option>
+                <option value="low-stock">Low Stock</option>
+                <option value="out-of-stock">Out of Stock</option>
+            </select>
+            <span *ngIf="!isEditing" [ngClass]="['label-like', getSeverity(selectedProduct.status)]">
                 {{ selectedProduct.status || 'Not Selected' }}
             </span>
-        </p>
-        <button (click)="closeModal()">Close</button>
+        </div>
+
+        <!-- Save Button -->
+        <button *ngIf="isEditing" (click)="saveChanges()" class="save-button">Save</button>
+
+        <!-- Close Modal -->
+        <button class="close-button" (click)="closeModal()">Close</button>
     </div>
 </div>

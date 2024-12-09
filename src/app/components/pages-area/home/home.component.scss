@@ -94,9 +94,6 @@
 
 
 
-  
-
-
 
 // Paginator
 ::ng-deep .p-paginator {
@@ -166,7 +163,7 @@
 // Product card content
 .modal-content {
     border: 5px solid #87ceeb;
-
+    position: relative;
     background-color: #FBFEFF;
     border-radius: 0.5rem;
     padding: 2rem;
@@ -176,16 +173,127 @@
     text-align: center;
 }
 
-button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    background-color: #007bf6;
+/* Edit Button */
+.edit-bnt {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    //background-color: #699bf7;
     color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
+.edit-bnt:hover {
+    background-color: #C1FFEF;
 }
+
+
+/* Close Button */
+.close-button {
+    background: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background: #c82333;
+}
+
+/* Save Button */
+.save-button {
+    background: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.save-button:hover {
+    background: #218838;
+}
+
+/* Product Fields */
+.product-field {
+    margin-bottom: 15px;
+}
+
+.product-field strong {
+    display: inline-block;
+    width: 100px;
+    font-weight: 600;
+}
+
+.product-field span {
+    display: inline-block;
+    width: calc(100% - 120px);
+    word-wrap: break-word;
+}
+
+/* Input and Select Fields */
+.input-field,
+.select-field {
+    display: inline-block;
+    width: calc(100% - 120px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Label-like Status */
+.label-like {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 4px;
+}
+
+/* Edit Row Button */
+/* Initially hide the edit button */
+.edit-btn {
+    display: none;
+}
+
+/* Show the button when hovering over the row */
+.editable-row:hover .edit-btn {
+    display: inline-block !important; /* Force the button to show */
+    cursor: pointer; /* Show a pointer cursor when hovering over the button */
+}
+
+
+
+// .edit-row-button {
+//     background: none;
+//     border: none;
+//     color: #007bff;
+//     font-size: 18px;
+//     cursor: pointer;
+//     transition: color 0.3s;
+// }
+
+// .edit-row-button:hover {
+//     color: #0056b3;
+// }
+
+
