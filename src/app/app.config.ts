@@ -13,5 +13,5 @@ export const appConfig = {
   provideRouter(routes), provideAnimations()],
 
 
-  productsUrl: "/api/products/"
+  productsUrl: "/api/products"
 };

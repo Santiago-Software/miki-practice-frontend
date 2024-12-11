@@ -4,5 +4,6 @@ export class ProductModel {
     public price!: number;
     public stock!: number;
     public status?: string | null;
+    public lastModified!: Date; // Add this line
 }
 
