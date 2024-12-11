@@ -3,6 +3,4 @@ export class ProductModel {
     public name!: string;
     public price!: number;
     public stock!: number;
-    public status?: string | null;
 }
-
