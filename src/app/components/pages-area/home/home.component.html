@@ -1,27 +1,46 @@
 <div class="card">
-    <p-table [value]="products" [paginator]="true" [rows]="rows" [tableStyle]="{ 'min-width': '50rem' }"
-        [rowsPerPageOptions]="[5, 10, 20, 30]">
+    <p-table #dt [value]="products" [paginator]="true" [rows]="rows" 
+        [tableStyle]="{ 'min-width': '50rem' }" [rowsPerPageOptions]="[5, 10, 20, 30]" 
+        [sortMode]="'multiple'" [customSort]="true" (sortFunction)="customSort($event)">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:15%">Id</th>
-                <th style="width:20%">Name</th>
-                <th style="width:20%">Price</th>
-                <th style="width:20%">Stock</th>
-                <th style="width:20%">Status</th>
-                <th style="width: 5%;">Edit</th>
+                <th pSortableColumn="id" style="width:15%">
+                    Id
+                    <p-sortIcon field="id"></p-sortIcon>
+                </th>
+                <th pSortableColumn="status" style="width:20%"
+                >
+                    Status
+                    <p-sortIcon field="status"></p-sortIcon>
+                </th>
+                <th pSortableColumn="name" style="width:20%">
+                    Name
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <th pSortableColumn="price" style="width:20%">
+                    Price
+                    <p-sortIcon field="price"></p-sortIcon>
+                </th>
+                <th pSortableColumn="stock" style="width:20%">
+                    Stock
+                    <p-sortIcon field="stock"></p-sortIcon>
+                </th>
+                <th style="width: 5%;">  <!-- Reset Sort Button -->
+                    <p-button label="" icon="pi pi-refresh" (click)="resetSort(dt)" class="reset-sort-button"></p-button>
+                </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr class="editable-row" (click)="onRowClick($event, product)">
                 <td>{{ product.id }}</td>
+                <td>
+                    <p [ngClass]="['label-like', getSeverity(product.status)]" >
+                        {{product.status || 'not-selected'}}
+                    </p>
+                </td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.stock }}</td>
-                <td>
-                    <p [ngClass]="['label-like', getSeverity(product.status)]" >
-                        {{product.status || 'Not Selected'}}
-                    </p>
-                </td>
                 <td class="text-center">
                     
                     <p-button 
@@ -32,10 +51,6 @@
                         [outlined]="true" 
                         severity="success" 
                         (onClick)="editProduct(product)" />
-                    <!-- Pen Icon Button
-                    <button (click)="onRowClick($event, product)" class="edit-row-button">
-                        ✏️
-                    </button> -->
                 </td>
 
             </tr>
@@ -57,7 +72,6 @@
         [outlined]="true" 
         severity="success" 
         (onClick)="toggleEditMode()" />
-        <!-- <button class="edit-button" *ngIf="!isEditing" (click)="toggleEditMode()">✏️</button> -->
 
         <h2>Product Details</h2>
 

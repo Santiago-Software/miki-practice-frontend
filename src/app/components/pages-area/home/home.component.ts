@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { ProductModel } from '../../../models/product.model';
 import { ProductsService } from '../../../services/products.service';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,8 @@ export class HomeComponent {
     rows: number = 5; // Default number of rows per page
     selectedProduct: any = null; // Stores the product clicked by the user
     productDialog: boolean = false;
+    originalProducts: ProductModel[] = []; // To keep the original order
+    
 
     statusOptions = [
         { label: 'In Stock', value: 'in-stock' },
@@ -40,12 +42,13 @@ export class HomeComponent {
     constructor(private productService: ProductsService) { }
 
     ngOnInit() {
-        this.productService.getAllProducts().then((products) => (this.products = products));
+        this.productService.getAllProducts().then((products) => {
+            this.products = [...products]; // Displayed products
+            this.originalProducts = [...products]; // Preserve original order
+        });
     }
 
     onRowClick(event: MouseEvent, product: ProductModel): void {
-        // this.selectedProduct = { ...product };  // Create a copy to prevent direct mutation
-        // this.isEditing = false;  // Start in view mode
         // Prevents the edit button click from triggering row click
         event.stopPropagation();
 
@@ -55,12 +58,75 @@ export class HomeComponent {
         this.isEditing = false;  // Ensure it's in view mode when clicking on a row
         }
     }
+    resetSort(table: Table): void {
+        this.products = [...this.originalProducts]; // Reset products to original order
+        table.clear(); // This clears sorting and filtering
+    }
+    
+    // Custom sort function for status
+    customSort(event: any): void {      
+        // Map status values to their corresponding numeric order
+        const statusOrder: Record<string, number> = {
+          'in-stock': 1,
+          'low-stock': 2,
+          'out-of-stock': 3,
+          'not-selected': 4, // This corresponds to null in the database
+        };
+      
+        const sortMeta = event.multiSortMeta;
+      
+        event.data.sort((a: any, b: any) => {
+          for (const meta of sortMeta) {
+            const field = meta.field; // Field being sorted
+            const order = meta.order; // Sorting order: 1 (asc) or -1 (desc)
+      
+            let value1 = a[field];
+            let value2 = b[field];
+      
+            // If the field is 'status', handle null as 'not-selected'
+            if (field === 'status') {
+              value1 = value1 === null ? 'not-selected' : value1;
+              value2 = value2 === null ? 'not-selected' : value2;
+      
+              value1 = statusOrder[value1] || 0; // Map to numeric value
+              value2 = statusOrder[value2] || 0; // Map to numeric value
+            }
+      
+            // Default sorting for other fields (e.g., name, price)
+            if (field !== 'status') {
+              if (value1 < value2) {
+                return order * -1;
+              } else if (value1 > value2) {
+                return order * 1;
+              }
+            }
+      
+            // If values are equal, perform tie-breaking logic for "status"
+            if (value1 === value2 && field === 'status') {
+              return 0; // If status is equal, no need to further compare
+            }
+      
+            // If the values are equal, move to the next sort field
+            if (value1 !== value2) {
+              return order * (value1 < value2 ? -1 : 1);
+            }
+          }
+          return 0; // Return 0 if all values are equal
+        });
+    }
+      
+      
+      
+      
+      
 
     // Open the product details in edit mode
     editProduct(product: ProductModel): void {
         this.selectedProduct = { ...product };  // Make a copy of the product
         this.isEditing = true;  // Enable edit mode
     }
+    
+
 
     // Toggle edit mode
     toggleEditMode(): void {
