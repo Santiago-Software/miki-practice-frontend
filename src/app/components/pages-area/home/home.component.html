@@ -3,18 +3,25 @@
         [rowsPerPageOptions]="[5, 10, 20, 30]">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:25%">Id</th>
-                <th style="width:25%">Name</th>
-                <th style="width:25%">Price</th>
-                <th style="width:25%">Stock</th>
+                <th style="width:20%">Id</th>
+                <th style="width:20%">Name</th>
+                <th style="width:20%">Price</th>
+                <th style="width:20%">Stock</th>
+                <th style="width:20%">Status</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
-            <tr (click)="onRowClick(product)">
+            <tr (click)="onRowClick($event, product)">
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.stock }}</td>
+                <td>
+                    <p [ngClass]="['label-like', getSeverity(product.status)]" >
+                        {{product.status || 'Not Selected'}}
+                    </p>
+                </td>
+
             </tr>
         </ng-template>
     </p-table>
@@ -28,6 +35,11 @@
         <p><strong>Name:</strong> {{ selectedProduct.name }}</p>
         <p><strong>Price:</strong> {{ selectedProduct.price }}</p>
         <p><strong>Stock:</strong> {{ selectedProduct.stock }}</p>
+        <p><strong>Status: </strong> 
+            <span [ngClass]="['label-like', getSeverity(selectedProduct.status)]">
+                {{ selectedProduct.status || 'Not Selected' }}
+            </span>
+        </p>
         <button (click)="closeModal()">Close</button>
     </div>
 </div>

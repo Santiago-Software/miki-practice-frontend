@@ -13,5 +13,5 @@ export const appConfig = {
   provideRouter(routes), provideAnimations()],
 
 
-  productsUrl: "http://localhost/api/products/"
+  productsUrl: "/api/products/"
 };

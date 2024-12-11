@@ -44,6 +44,60 @@
     cursor: pointer; // Change cursor to pointer
 }
 
+  
+// Status column
+
+/* General label style */
+.label-like {
+    display: inline-block; /* Ensure it only takes up as much space as necessary */
+    padding: 6px 12px;     /* Add padding for label-like appearance */
+    border-radius: 16px;   /* Rounded corners */
+    font-size: 14px;       /* Adjust the font size */
+    font-weight: 600;      /* Make text bold */
+    text-align: center;    /* Center the text */
+    white-space: nowrap;   /* Prevent text wrapping */
+    max-width: 100%;       /* Ensure it doesn't stretch beyond available space */
+    word-wrap: break-word; /* Allow wrapping if the text is too long */
+}
+
+/* For different status types */
+.not-selected {
+    background-color: #d3d3d3;  /* Light gray background */
+    color: #6c757d;             /* Dark gray text */
+    border: 1px solid #ccc;     /* Light gray border */
+}
+
+.success {
+    background-color: #28a745;  /* Green background */
+    color: white;               /* White text */
+    border: 1px solid #28a745;  /* Green border */
+}
+
+.warning {
+    background-color: #ffc107;  /* Yellow background */
+    color: white;               /* White text */
+    border: 1px solid #ffc107;  /* Yellow border */
+}
+
+.danger {
+    background-color: #dc3545;  /* Red background */
+    color: white;               /* White text */
+    border: 1px solid #dc3545;  /* Red border */
+}
+
+.neutral {
+    background-color: #007bff;  /* Blue background */
+    color: white;               /* White text */
+    border: 1px solid #007bff;  /* Blue border */
+}
+
+
+
+
+  
+
+
+
 // Paginator
 ::ng-deep .p-paginator {
     margin-top: 1rem;
@@ -51,7 +105,7 @@
     background-color: transparent; // Remove background
     box-shadow: none; // Remove any shadow if present
     border: none; // Remove borders if needed
-  
+
 }
 
 
@@ -73,8 +127,8 @@
 ::ng-deep .p-paginator .p-paginator-next,
 ::ng-deep .p-paginator .p-paginator-first,
 ::ng-deep .p-paginator .p-paginator-last {
-  color: black; // Arrow color
-  transition: background-color 0.3s ease, color 0.3s ease; // Smooth transition
+    color: black; // Arrow color
+    transition: background-color 0.3s ease, color 0.3s ease; // Smooth transition
 }
 
 // Hover Effect for All Arrows
@@ -82,16 +136,17 @@
 ::ng-deep .p-paginator .p-paginator-next:hover,
 ::ng-deep .p-paginator .p-paginator-first:hover,
 ::ng-deep .p-paginator .p-paginator-last:hover {
-  background-color: #ea9d5c; // Highlighted background on hover
-  color: white; // Change arrow color on hover
+    background-color: #ea9d5c; // Highlighted background on hover
+    color: white; // Change arrow color on hover
 }
+
 // Disabled State for All Arrows
 ::ng-deep .p-paginator .p-paginator-prev.p-disabled,
 ::ng-deep .p-paginator .p-paginator-next.p-disabled,
 ::ng-deep .p-paginator .p-paginator-first.p-disabled,
 ::ng-deep .p-paginator .p-paginator-last.p-disabled {
-  color: #999; // Disabled arrow color
-  cursor: not-allowed; // Indicate unclickable state
+    color: #999; // Disabled arrow color
+    cursor: not-allowed; // Indicate unclickable state
 }
 
 // Product card backdrop
