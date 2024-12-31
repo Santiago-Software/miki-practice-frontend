@@ -116,9 +116,6 @@ export class HomeComponent {
     }
       
       
-      
-      
-      
 
     // Open the product details in edit mode
     editProduct(product: ProductModel): void {
@@ -143,7 +140,7 @@ export class HomeComponent {
             this.isEditing = false;  // Exit edit mode
       
             // You can also update the product list if needed
-            this.updateProductInList(updatedProduct);  // Update the product in the frontend list
+            //this.updateProductInList(updatedProduct);  // Update the product in the frontend list
         }
     }
 
