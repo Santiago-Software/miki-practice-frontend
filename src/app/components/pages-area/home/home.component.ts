@@ -114,6 +114,7 @@ export class HomeComponent {
         });
     }
       
+      
 
     // Open the product details in edit mode
     editProduct(product: ProductModel): void {
@@ -130,19 +131,14 @@ export class HomeComponent {
     // Save the changes to the product
     saveChanges(): void {
         if (this.selectedProduct) {
-            this.productService.updateProduct(this.selectedProduct).subscribe(
-                (updatedProduct: ProductModel) => {
-                    // Successfully updated product
-                    console.log('Product updated:', updatedProduct);
-                    this.isEditing = false;  // Exit edit mode
-                    
-                    // You can also update the product list if needed
-                    this.updateProductInList(updatedProduct);  // Update the product in the frontend list
-                },
-                (error) => {
-                    console.error('Error updating product:', error);
-                }
-            );
+            const updatedProduct = this.productService.updateProduct(this.selectedProduct);
+            
+            // Successfully updated product
+            console.log('Product updated:', updatedProduct);
+            this.isEditing = false;  // Exit edit mode
+      
+            // You can also update the product list if needed
+            //this.updateProductInList(updatedProduct);  // Update the product in the frontend list
         }
     }
 
